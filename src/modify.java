@@ -195,7 +195,7 @@ String query="update hotel set name='"+b+"', phoneno='"+c+"',roomno='"+d+"',noda
 Statement stmt= con.createStatement();
 stmt.executeUpdate(query);
  
-JOptionPane.showMessageDialog(null,"Saved Successfully"); 
+JOptionPane.showMessageDialog(null,"Record Modified Successfully"); 
 stmt.close();
 con.close();
 

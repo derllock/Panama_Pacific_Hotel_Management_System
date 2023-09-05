@@ -1,6 +1,7 @@
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 
@@ -52,7 +53,7 @@ public class generatebill extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1020, 680));
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -63,8 +64,8 @@ public class generatebill extends javax.swing.JFrame {
         jTextField1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 102, 173, -1));
 
-        jTextField2.setEditable(false);
         jTextField2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jTextField2.setFocusable(false);
         getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 182, 173, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -74,6 +75,7 @@ public class generatebill extends javax.swing.JFrame {
 
         jComboBox1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Single", "Double", "Delux" }));
+        jComboBox1.setFocusable(false);
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -91,8 +93,8 @@ public class generatebill extends javax.swing.JFrame {
         jLabel4.setText("Room No.");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 370, -1, -1));
 
-        jTextField4.setEditable(false);
         jTextField4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jTextField4.setFocusable(false);
         jTextField4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField4ActionPerformed(evt);
@@ -100,8 +102,8 @@ public class generatebill extends javax.swing.JFrame {
         });
         getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 370, 170, -1));
 
-        jTextField5.setEditable(false);
         jTextField5.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jTextField5.setFocusable(false);
         getContentPane().add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 460, 170, 40));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -114,12 +116,12 @@ public class generatebill extends javax.swing.JFrame {
         jLabel6.setText("Charges per Day");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 550, -1, -1));
 
-        jTextField6.setEditable(false);
         jTextField6.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jTextField6.setFocusable(false);
         getContentPane().add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 545, 170, 40));
 
-        jTextField7.setEditable(false);
         jTextField7.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jTextField7.setFocusable(false);
         getContentPane().add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 630, 180, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -152,6 +154,7 @@ public class generatebill extends javax.swing.JFrame {
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(323, 0, -1, -1));
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sunny floorboards.jpg"))); // NOI18N
+        jLabel10.setFocusable(false);
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 680));
 
         pack();
@@ -162,42 +165,53 @@ public class generatebill extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try{
+         try{
             Class.forName("java.sql.Driver");
-            Connection con=DriverManager.getConnection("jdbc:mysql://localhost/panpac","root","1234");
-            int g,k=0;
-            String rt; rt=jComboBox1.getSelectedItem().toString();
-            switch (rt) {
-                case "Single":
-                k=2000;
-                break;
-                case "Double":
-                k=2500;
-                break;
-                case "Delux":
-                k=4000;
-                break;
-                default:
-                break;
-            }
 
-            int a=Integer.parseInt(jTextField1.getText());
-            String b=jTextField2.getText();
-            
-            String d=jTextField4.getText();
-            int e=Integer.parseInt(jTextField5.getText());
-            jTextField6.setText(""+k);
-            g=k*e;
-            jTextField7.setText(""+g);
-            String query="update hotel set name='"+b+"', phoneno='"+"',roomno='"+d+"',noday='"+e+"',costpday='"+k+"',totamt='"+g+"', roomtype='"+rt+"' where bookno='"+a+"';";
-            Statement stmt= con.createStatement();
-            stmt.executeUpdate(query);
+        Class.forName("com.mysql.jdbc.Driver");
 
-            JOptionPane.showMessageDialog(null,"Saved Successfully");
-            stmt.close();
-            con.close();
+        Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3300/panpac","root","");
 
-        }catch(Exception e){JOptionPane.showMessageDialog(null, e);}               // TODO add your handling code here:
+        Statement stmt= con.createStatement();
+
+        String query = "SELECT * FROM hotel WHERE bookno ='"+jTextField1.getText()+"'";
+        ResultSet rs = stmt.executeQuery(query);
+
+        int a,b,d,e,f,h; String c,g,rot;
+
+        if (rs.next())
+        {
+        a=rs.getInt("bookno");
+        g =rs.getString("name");
+        d=rs.getInt("roomno");
+        f=rs.getInt("costpday");
+        e= rs.getInt("noday");
+        h=rs.getInt("totamt");
+        rot= rs.getString("roomtype");
+
+        
+
+        jTextField1.setText(""+a);
+        jTextField2.setText(g);
+        jTextField4.setText(""+d);
+        jTextField5.setText(""+e);
+        jTextField6.setText(f+"");
+        jTextField7.setText(h +"");
+        jComboBox1.setSelectedItem(rot);
+        }
+        else
+        {
+        jTextField1.setText("");
+        jTextField2.setText("");
+        jTextField4.setText("");
+        jTextField5.setText("");
+
+
+        JOptionPane.showMessageDialog(null, "No such record found");
+
+} //end of try
+        }catch(Exception e){JOptionPane.showMessageDialog(null, e);}
+        // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
