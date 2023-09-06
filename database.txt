@@ -1,0 +1,12 @@
+CREATE DATABASE `panpac`;
+USE `panpac`;
+CREATE TABLE `hostel` (
+  `bookno` int(5) PRIMARY KEY,
+  `name` varchar(20) NOT NULL,
+  `phoneno` mediumtext NOT NULL UNIQUE,
+  `roomno` int(4) NOT NULL UNIQUE
+  `noday` int(2) NOT NULL,
+  `costpday` int(4) NOT NULL,
+  `totamt`int(5) NOT NULL,
+  `roomtype` varchar(10) NOT NULL
+);
