@@ -164,7 +164,15 @@ public class modify extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-try{
+int a=Integer.parseInt(jTextField1.getText());
+String b=jTextField2.getText();
+String c=jTextField3.getText();
+String d=jTextField4.getText();
+int e=Integer.parseInt(jTextField5.getText());
+if(a==Integer.parseInt("") || b.equals("") || c.equals("") || d.equals("") || e==Integer.parseInt(""))JOptionPane.showMessageDialog(null,"Empty fields detected"); 
+else{
+    
+        try{
    Class.forName("java.sql.Driver");
    Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3300/panpac","root",""); 
    int g,k=0;
@@ -183,13 +191,8 @@ String rt; rt=jComboBox1.getSelectedItem().toString();
             break;
     }
 
-int a=Integer.parseInt(jTextField1.getText());
-String b=jTextField2.getText();
-String c=jTextField3.getText();
-String d=jTextField4.getText();
-int e=Integer.parseInt(jTextField5.getText());
-
 g=k*e;
+
 
 String query="update hotel set name='"+b+"', phoneno='"+c+"',roomno='"+d+"',noday='"+e+"',costpday='"+k+"',totamt='"+g+"', roomtype='"+rt+"' where bookno='"+a+"';";
 Statement stmt= con.createStatement();
@@ -199,7 +202,8 @@ JOptionPane.showMessageDialog(null,"Record Modified Successfully");
 stmt.close();
 con.close();
 
-}catch(Exception e){JOptionPane.showMessageDialog(null, e);}               // TODO add your handling code here:
+}catch(Exception z){JOptionPane.showMessageDialog(null, z);}
+}              // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
